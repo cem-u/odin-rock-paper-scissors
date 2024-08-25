@@ -1,0 +1,2 @@
+# Rock Paper Scissors
+This repository contains my assignment for [The Odin Project](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors), where I create a rock paper scissors game using javascript. This game will be played entirely in the console.
