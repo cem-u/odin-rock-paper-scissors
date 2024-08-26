@@ -13,6 +13,7 @@ function getComputerChoice() {
             return "scissors";
     }
 }
+
 /*
     Prompts the user for their choice of "rock", "paper", or "scissors". 
     Repeats until a valid choice is entered.
@@ -28,6 +29,7 @@ function getHumanChoice() {
         console.log("Invalid input: you must enter rock, paper or scissors");
     }
 }
+
 /*
     Compares the human's choice with the computer's choice to determine 
     the result of the round based on the rules of Rock Paper Scissors. 
@@ -46,6 +48,7 @@ function playRound(humanChoice, computerChoice) {
 
     return `You win, ${humanChoice} beats ${computerChoice}`;
 }
+
 /*
     Plays a game of Rock Paper Scissors. It runs 5 rounds, keeps track 
     of scores for the human and computer, and prints the final result.
