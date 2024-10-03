@@ -52,6 +52,11 @@ p {
     margin-bottom: auto;
 }
 
+img {
+    height: auto;
+    width: 100%;
+}
+
 .result-container {
     display: flex;
     flex-direction: column;
