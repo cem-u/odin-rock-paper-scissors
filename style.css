@@ -21,7 +21,6 @@ p {
     border: 4px solid black;
     border-radius: 30px;
     padding: 10px;
-
     background-color: #d3d3d3;
 
     display: flex;
@@ -76,6 +75,6 @@ p {
 }
 
 .buttons button {
-    height: 30px;
     flex: 1;
+    font-size: 25px;
 }
