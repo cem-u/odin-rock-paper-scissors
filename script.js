@@ -1,7 +1,19 @@
-/*
-    Returns a random choice for the computer: "rock", "paper", or "scissors".
-*/
-function getComputerChoice() {
+const playerScoreValue = document.querySelector(".player-score-value");
+const botScoreValue = document.querySelector(".bot-score-value");
+
+const result = document.querySelector(".result");
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => {
+    button.addEventListener("click", e => {
+        playRound(e.target.textContent.toLowerCase(), getBotChoice());
+    });
+});
+
+let playerScore = 0;
+let botScore = 0;
+
+function getBotChoice() {
     let choice = Math.floor(Math.random() * 3);
 
     switch(choice) {
@@ -14,73 +26,34 @@ function getComputerChoice() {
     }
 }
 
-/*
-    Prompts the user for their choice of "rock", "paper", or "scissors". 
-    Repeats until a valid choice is entered.
-*/
-function getHumanChoice() {
-    while(true) {
-        let choice = prompt("rock, paper, or scissors?").toLowerCase();
+function playRound(playerChoice, botChoice) {
+    let roundResult = calcResult(playerChoice, botChoice);
 
-        if (choice === "rock" || choice === "paper" || choice === "scissors") {
-            return choice;
-        }
+    //Update the result div text to reflect round result
+    result.textContent = roundResult;
 
-        console.log("Invalid input: you must enter rock, paper or scissors");
+    if (roundResult.includes("win")) {
+        playerScore++;
+    } else if (roundResult.includes("lose")) {
+        botScore++;
     }
+
+    updateScores();
 }
 
-/*
-    Compares the human's choice with the computer's choice to determine 
-    the result of the round based on the rules of Rock Paper Scissors. 
-    Returns a string indicating if the human won, lost, or tied.
-*/
-function playRound(humanChoice, computerChoice) {
-    if (computerChoice === humanChoice) {
+function calcResult(playerChoice, botChoice) {
+    if (botChoice === playerChoice) {
         return "It's a tie.";
+    } else if (botChoice === "rock" && playerChoice === "scissors" || 
+        botChoice === "paper" && playerChoice === "rock" || 
+        botChoice === "scissors" && playerChoice === "paper") {
+        return `You lose, ${botChoice} beats ${playerChoice}.`;
+    } else {
+        return `You win, ${playerChoice} beats ${botChoice}.`;
     }
-
-    if(computerChoice === "rock" && humanChoice === "scissors" || 
-        computerChoice === "paper" && humanChoice === "rock" || 
-        computerChoice === "scissors" && humanChoice === "paper") {
-        return `You lose, ${computerChoice} beats ${humanChoice}`;
-    }
-
-    return `You win, ${humanChoice} beats ${computerChoice}`;
 }
 
-/*
-    Plays a game of Rock Paper Scissors. It runs 5 rounds, keeps track 
-    of scores for the human and computer, and prints the final result.
-*/
-function playGame() {
-    let computerScore = 0;
-    let humanScore = 0;
-
-    for(let i = 0; i < 5; i++) {
-        let computerChoice = getComputerChoice();
-        let humanChoice = getHumanChoice();
-        let roundResult = playRound(humanChoice, computerChoice);
-        
-        if (roundResult.includes("win")) {
-            humanScore++;
-        }
-        if (roundResult.includes("lose")) {
-            computerScore++;
-        }
-
-        console.log(`Round ${i + 1}: ${roundResult}`);
-    }
-
-    console.log("-------------------")
-
-    if(computerScore === humanScore) {
-        console.log(`It's a tie.\nYour score: ${humanScore}\nComputer's score: ${computerScore}`)
-        return;
-    }
-    if(computerScore < humanScore) {
-        console.log(`You win!\nYour score: ${humanScore}\nComputer's score: ${computerScore}`);
-        return;
-    } 
-    console.log(`You lose.\nYour score: ${humanScore}\nComputer's score: ${computerScore}`);
+function updateScores() {
+    playerScoreValue.textContent = playerScore;
+    botScoreValue.textContent = botScore;
 }
