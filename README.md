@@ -7,5 +7,5 @@ This repository contains my assignment for [The Odin Project](https://www.theodi
 - Includes reset button to play multiple games.
 ## Important Info (MUST READ)
 This website is not dynamically sized. It's required that you play it on a desktop screen with your browser window maximized or else the UI will not display correctly.
-## Link
+## How to Play
 Click [this link](https://cem-u.github.io/odin-rock-paper-scissors/) or the link in the about section of this repo to play the game.
